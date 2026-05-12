@@ -1,0 +1,38 @@
+<?php
+
+use App\Models\UserModel;
+
+?>
+
+
+<?= $this->extend('layouts/app') ?>
+
+<?= $this->section('content') ?>
+
+<div class="section-header d-flex justify-content-between">
+    <h1>User - Detail</h1>
+</div>
+
+<div class="section-body">
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <label>Name</label>
+                    <input type="text" name="name" class="form-control" required value="<?= $user['name'] ?>" disabled>
+                </div>
+                <div class="mb-3">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" required value="<?= $user['username'] ?>" disabled>
+                </div>
+                <div class="mb-3">
+                    <label>Role</label>
+                    <input type="text" name="role" class="form-control" required value="<?= UserModel::getRoleName($user['role']) ?>" disabled>
+                </div>
+                <a href="<?= base_url('users') ?>" class="btn btn-secondary">Back</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?= $this->endSection() ?>

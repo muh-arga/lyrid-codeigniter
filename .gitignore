@@ -1,0 +1,37 @@
+# --- Environment Settings ---
+.env
+phpunit.xml
+
+# --- Dependencies ---
+vendor/
+
+# --- Writable Directory ---
+# Ignore everything in writable except the directory structure
+writable/*
+!writable/cache/
+!writable/debugbar/
+!writable/logs/
+!writable/session/
+!writable/uploads/
+
+# Within those directories, keep the index.html or .htaccess to protect them
+writable/cache/*
+!writable/cache/index.html
+writable/debugbar/*
+!writable/debugbar/index.html
+writable/logs/*
+!writable/logs/index.html
+writable/session/*
+!writable/session/index.html
+writable/uploads/*
+!writable/uploads/index.html
+
+# --- Testing & Build ---
+build/
+tests/_support/_generated/
+*.cache
+
+# --- OS/IDE Specific ---
+.DS_Store
+.idea/
+.vscode/
