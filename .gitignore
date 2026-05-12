@@ -36,4 +36,5 @@ tests/_support/_generated/
 .idea/
 .vscode/
 
-public/uploads/*
+public/uploads/
+!public/uploads/.gitkeep
