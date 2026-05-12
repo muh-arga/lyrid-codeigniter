@@ -33,6 +33,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php if (empty($employees)): ?>
+                        <tr>
+                            <td colspan="6" class="text-center">No employees found.</td>
+                        </tr>
+                    <?php endif; ?>
+
                     <?php foreach ($employees as $employee): ?>
                         <tr>
                             <td><a href="<?= base_url('employees/detail/' . $employee['id']) ?>"><?= $employee['id'] ?></a></td>

@@ -38,6 +38,12 @@ use App\Models\UserModel;
                     </tr>
                 </thead>
                 <tbody>
+                    <?php if (empty($users)): ?>
+                        <tr>
+                            <td colspan="5" class="text-center">No users found.</td>
+                        </tr>
+                    <?php endif; ?>
+                    
                     <?php foreach ($users as $user): ?>
                         <tr>
                             <td><a href="<?= base_url('users/detail/' . $user['id']) ?>"><?= $user['id'] ?></a></td>
