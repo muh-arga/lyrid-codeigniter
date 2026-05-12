@@ -1,3 +1,5 @@
+# Lyrid CodeIgniter 4
+
 ## Installation
 1. Clone the repository:
     ```bash
