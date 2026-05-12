@@ -9,18 +9,30 @@
 </div>
 
 <div class="section-body">
-    <div class="card">
-        <div class="card-body table-responsive">
-            <?php if (session()->get('errors')): ?>
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        <?php foreach (session()->get('errors') as $error): ?>
-                            <li><?= $error ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            <?php endif; ?>
+    <?php if (session()->get('errors')): ?>
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                <?php foreach (session()->get('errors') as $error): ?>
+                    <li><?= $error ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 
+    <div class="card">
+        <form action="<?= base_url('employees') ?>" method="GET">
+            <div class="card-header">
+                <h4>Search</h4>
+            </div>
+            <div class="card-body">
+                <div class="input-group mb-3">
+                    <input type="text" name="q" class="form-control" placeholder="Search by name or email" value="<?= $_GET['q'] ?? '' ?>">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="card-body table-responsive">
             <table class="table">
                 <thead>
                     <tr>

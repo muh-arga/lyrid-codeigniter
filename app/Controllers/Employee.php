@@ -10,7 +10,12 @@ class Employee extends BaseController
     public function index()
     {
         $model = new EmployeeModel();
-        $employees = $model->findAll();
+
+        $search = $this->request->getGet('q') ?? '';
+
+        $employees = $model->like('name', $search)
+            ->orLike('email', $search)
+            ->findAll();
 
         $currentPage = 'employees';
         $title = 'Employee - Index';
@@ -62,7 +67,7 @@ class Employee extends BaseController
                 ]
             ];
 
-            if(!$this->validate($rules)) {
+            if (!$this->validate($rules)) {
                 return redirect()->back()
                     ->withInput()
                     ->with('errors', $validation->getErrors());

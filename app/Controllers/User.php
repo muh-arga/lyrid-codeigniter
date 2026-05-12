@@ -11,7 +11,12 @@ class User extends BaseController
     public function index()
     {
         $model = new UserModel();
-        $users = $model->findAll();
+
+        $search = $this->request->getGet('q') ?? '';
+
+        $users = $model->like('name', $search)
+            ->orLike('username', $search)
+            ->findAll();
 
         $title = 'User - Index';
         $currentPage = 'users';

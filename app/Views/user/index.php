@@ -15,18 +15,30 @@ use App\Models\UserModel;
 </div>
 
 <div class="section-body">
+    <?php if (session()->get('errors')): ?>
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                <?php foreach (session()->get('errors') as $error): ?>
+                    <li><?= $error ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+    
     <div class="card">
-        <div class="card-body table-responsive">
-            <?php if (session()->get('errors')): ?>
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        <?php foreach (session()->get('errors') as $error): ?>
-                            <li><?= $error ?></li>
-                        <?php endforeach; ?>
-                    </ul>
+        <form action="<?= base_url('users') ?>" method="GET">
+            <div class="card-header">
+                <h4>Search</h4>
+            </div>
+            <div class="card-body">
+                <div class="input-group mb-3">
+                    <input type="text" name="q" class="form-control" placeholder="Search by name or username" value="<?= $_GET['q'] ?? '' ?>">
+                    <button class="btn btn-primary" type="submit">Search</button>
                 </div>
-            <?php endif; ?>
-            
+            </div>
+        </form>
+
+        <div class="card-body table-responsive">
             <table class="table">
                 <thead>
                     <tr>
@@ -43,12 +55,12 @@ use App\Models\UserModel;
                             <td colspan="5" class="text-center">No users found.</td>
                         </tr>
                     <?php endif; ?>
-                    
+
                     <?php foreach ($users as $user): ?>
                         <tr>
                             <td><a href="<?= base_url('users/detail/' . $user['id']) ?>"><?= $user['id'] ?></a></td>
                             <td><?= $user['name'] ?></td>
-                            <td><?=  $user['username'] ?></td>
+                            <td><?= $user['username'] ?></td>
                             <td><?= UserModel::getRoleName($user['role']) ?></td>
                             <td>
                                 <a href="<?= base_url('users/edit/' . $user['id']) ?>" class="btn btn-sm btn-primary">Edit</a>
