@@ -27,7 +27,7 @@
 
 2. Run Seeder to populate the database with initial data:
     ```bash
-    php spark db:seed
+    php spark db:seed --name UserSeeder
     ```
 
 3. Start the development server:
@@ -45,3 +45,10 @@
 - Regular User:
     - username: user
     - password: user123
+
+## Note
+- If failed upload image, make sure to create `uploads` directory in the `public` root and set proper permissions:
+    ```bash
+    mkdir public/uploads
+    chmod 755 public/uploads
+    ```
